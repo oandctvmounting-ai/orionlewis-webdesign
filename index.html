@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ORION LEWIS — Modern, high-performing websites for contractors, realtors, restaurants, and local service businesses. Design. Build. Elevate. Starting at $499.">
+  <title>ORION LEWIS — Web Design & Digital Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --royal-blue: #002366;
+      --royal-blue-dark: #001a4a;
+      --royal-blue-light: #e8edf5;
+      --gold: #D4AF37;
+      --gold-light: #fdf6e3;
+      --gold-dark: #b8962e;
+      --black: #0a0a0a;
+      --black-soft: #141414;
+      --white: #ffffff;
+      --off-white: #fafafa;
+      --gray-100: #f5f5f5;
+      --gray-200: #e5e5e5;
+      --gray-300: #d4d4d4;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-800: #262626;
+      --text-dark: #111111;
+      --text-muted: #6b6b6b;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+      --shadow-xl: 0 24px 64px rgba(0,35,102,0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --transition: all 0.2s ease;
+      --transition-slow: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition-duration: 0.01ms !important; } }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--black);
+    }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.01em; }
+    h3 { font-size: clamp(1.375rem, 2.5vw, 1.75rem); }
+    .text-gold { color: var(--gold); }
+    .text-royal { color: var(--royal-blue); }
+    .text-muted { color: var(--text-muted); }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    .section-alt { background: var(--off-white); }
+    .section-dark { background: var(--black); color: var(--white); }
+    .section-dark h1, .section-dark h2, .section-dark h3 { color: var(--white); }
+    .section-dark .text-muted { color: rgba(255,255,255,0.6); }
+
+    .section-header { text-align: center; max-width: 720px; margin: 0 auto 60px; }
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; background: var(--gold-light); border: 1px solid var(--gold);
+      border-radius: 100px; font-size: 0.875rem; font-weight: 600; color: var(--royal-blue);
+      margin-bottom: 16px; width: fit-content;
+    }
+    .section-badge::before { content: ''; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .section-header p { font-size: 1.125rem; color: var(--gray-600); margin-top: 12px; line-height: 1.7; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 32px; font-size: 1rem; font-weight: 600; font-family: 'Inter', sans-serif;
+      border-radius: var(--radius-md); border: 2px solid transparent; cursor: pointer; transition: var(--transition);
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--royal-blue); color: var(--white); border-color: var(--royal-blue);
+    }
+    .btn-primary:hover { background: var(--royal-blue-dark); border-color: var(--royal-blue-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-gold {
+      background: var(--gold); color: var(--black); border-color: var(--gold);
+    }
+    .btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--royal-blue); border-color: var(--royal-blue);
+    }
+    .btn-outline:hover { background: var(--royal-blue); color: var(--white); }
+    .btn-lg { padding: 20px 40px; font-size: 1.125rem; }
+    .btn-full { width: 100%; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--black); }
+    .logo-mark { width: 40px; height: 40px; background: var(--royal-blue); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .logo-mark svg { width: 24px; height: 24px; stroke: var(--gold); }
+    .logo-text { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.25rem; color: var(--royal-blue); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--gray-600); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
+    .nav-links a:hover { color: var(--royal-blue); }
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-menu-btn svg { width: 24px; height: 24px; stroke: var(--black); }
+
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 20% 10%, rgba(0,35,102,0.05) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 90%, rgba(212,175,55,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; background: var(--gold-light); border: 1px solid var(--gold);
+      border-radius: 100px; font-size: 0.875rem; font-weight: 600; color: var(--royal-blue);
+      margin-bottom: 24px; width: fit-content;
+    }
+    .hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+    .hero h1 { margin-bottom: 20px; }
+    .hero p.lead { font-size: 1.25rem; color: var(--gray-600); max-width: 540px; margin-bottom: 32px; line-height: 1.7; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-trust { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; color: var(--gray-500); font-size: 0.875rem; font-weight: 500; }
+    .hero-trust-item { display: flex; align-items: center; gap: 6px; }
+    .hero-trust-item svg { width: 18px; height: 18px; stroke: var(--gold); }
+
+    .hero-visual { position: relative; }
+    .hero-card {
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl);
+      padding: 40px; box-shadow: var(--shadow-xl);
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .hero-card-header { display: flex; align-items: center; gap: 12px; padding-bottom: 20px; border-bottom: 1px solid var(--gray-200); }
+    .hero-card-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
+    .hero-card-dot.blue { background: var(--royal-blue); }
+    .hero-card-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.375rem; color: var(--black); }
+    .hero-card-metric { display: flex; justify-content: space-between; align-items: baseline; }
+    .hero-card-value { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--royal-blue); line-height: 1; }
+    .hero-card-suffix { font-size: 1.5rem; font-weight: 500; color: var(--gray-600); }
+    .hero-card-desc { font-size: 0.95rem; color: var(--gray-600); }
+    .hero-card-bar { height: 8px; background: var(--gray-100); border-radius: 4px; overflow: hidden; }
+    .hero-card-bar-fill { height: 100%; background: linear-gradient(90deg, var(--royal-blue), var(--gold)); border-radius: 4px; width: 92%; }
+
+    .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .value-card {
+      background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
+      padding: 32px; transition: var(--transition-slow);
+    }
+    .value-card:hover { border-color: var(--gold); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .value-icon { width: 56px; height: 56px; background: var(--gold-light); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .value-icon svg { width: 28px; height: 28px; stroke: var(--gold); }
+    .value-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .value-card p { color: var(--gray-600); font-size: 0.95rem; line-height: 1.7; }
+
+    .packages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .package-card {
+      background: var(--white); border: 2px solid var(--gray-200); border-radius: var(--radius-xl);
+      padding: 40px 32px; display: flex; flex-direction: column; transition: var(--transition-slow);
+      position: relative; overflow: hidden;
+    }
+    .package-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--gray-200); transition: var(--transition);
+    }
+    .package-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+    .package-card:hover::before { background: var(--gold); }
+    .package-card.popular { border-color: var(--royal-blue); }
+    .package-card.popular::before { background: var(--royal-blue); }
+    .package-badge {
+      position: absolute; top: 0; right: 0; background: var(--royal-blue); color: var(--white);
+      font-size: 0.7rem; font-weight: 700; padding: 6px 14px; border-radius: 0 0 0 var(--radius-md);
+      text-transform: uppercase; letter-spacing: 0.05em; line-height: 1;
+    }
+    .package-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.375rem; margin-bottom: 6px; }
+    .package-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
+    .package-amount { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--black); line-height: 1; }
+    .package-period { color: var(--gray-600); font-size: 0.95rem; }
+    .package-desc { color: var(--gray-600); font-size: 0.9rem; margin-bottom: 24px; flex: 1; line-height: 1.6; }
+.package-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex: 1; }
+    .package-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--text-dark); }
+    .package-features svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
+    .package-btn { width: 100%; }
+
+    .maint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .maint-card { background: var(--white); border: 2px solid var(--gray-200); border-radius: var(--radius-xl); padding: 40px 32px; transition: var(--transition-slow); position: relative; overflow: hidden; }
+    .maint-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gray-200); transition: var(--transition); }
+    .maint-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .maint-card:hover::before { background: var(--gold); }
+    .maint-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.375rem; margin-bottom: 6px; }
+    .maint-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 20px; }
+    .maint-amount { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--royal-blue); line-height: 1; }
+    .maint-period { color: var(--gray-600); }
+    .maint-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex: 1; }
+    .maint-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--text-dark); }
+    .maint-features svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
+
+    .addons-table { width: 100%; border-collapse: collapse; margin-top: 48px; background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+    .addons-table th { background: var(--royal-blue); color: var(--white); padding: 16px 24px; text-align: left; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .addons-table td { padding: 16px 24px; border-bottom: 1px solid var(--gray-100); font-size: 0.95rem; color: var(--text-dark); }
+    .addons-table tr:last-child td { border-bottom: none; }
+    .addons-table tr:hover td { background: var(--off-white); }
+    .addons-table td:last-child { font-weight: 700; color: var(--royal-blue); text-align: right; }
+
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .process-step { text-align: center; }
+    .process-number { width: 64px; height: 64px; background: var(--royal-blue); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; margin: 0 auto 20px; box-shadow: var(--shadow-lg); }
+    .process-step h3 { font-size: 1.125rem; margin-bottom: 8px; }
+    .process-step p { font-size: 0.9rem; color: var(--gray-600); }
+
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .stat-item { text-align: center; }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 0.875rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 8px; }
+
+    .cta-section { text-align: center; }
+    .cta-section h2 { margin-bottom: 20px; }
+    .cta-section p { font-size: 1.25rem; color: var(--gray-600); margin-bottom: 32px; }
+
+    .contact-form { max-width: 640px; margin: 0 auto; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-xl); }
+    .form-group { margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.03em; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; font-size: 1rem; font-family: 'Inter', sans-serif; border: 2px solid var(--gray-200); border-radius: var(--radius-md); transition: var(--transition); background: var(--white); color: var(--text-dark); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--royal-blue); box-shadow: 0 0 0 3px rgba(0,35,102,0.1); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 16px; text-align: center; }
+    .form-success { display: none; background: #f0fdf4; border: 2px solid #22c55e; border-radius: var(--radius-md); padding: 32px; text-align: center; }
+    .form-success.show { display: block; }
+    .form-success h3 { color: #15803d; margin-bottom: 8px; }
+    .form-success p { color: #166534; }
+
+    .footer { background: var(--black-soft); color: rgba(255,255,255,0.6); padding: 60px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand .logo-text { color: var(--white); }
+    .footer-brand p { margin-top: 16px; font-size: 0.9rem; max-width: 320px; }
+    .footer h4 { color: var(--white); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer ul a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+    .footer ul a:hover { color: var(--gold); }
+    .footer-contact { display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; }
+    .footer-contact a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+
+    @media (max-width: 1024px) {
+      .packages-grid { grid-template-columns: repeat(2, 1fr); }
+      .maint-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .value-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .mobile-menu-btn { display: block; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 32px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .section { padding: 60px 0; }
+      .addons-table th, .addons-table td { padding: 12px 16px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg>
+        </div>
+        <span class="logo-text">ORION LEWIS</span>
+        </a>
+        <ul class="nav-links">
+        <li><a href="#why">Why Me</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#maintenance">Maintenance</a></li>
+        <li><a href="#addons">Add-ons</a></li>
+        <li><a href="#process">Process</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-gold" style="padding:12px 24px;font-size:0.9rem;">Get a Quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">Now accepting new projects</div>
+        <div style="font-size:0.875rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--royal-blue);margin-bottom:12px;">Orion Lewis Web Design</div>
+        <h1>Design. Build. <span class="text-gold">Elevate.</span></h1>
+        <p class="lead">We create modern, high-performing websites that help businesses stand out, attract customers, and grow online.</p>
+        <div class="hero-cta">
+          <a href="#packages" class="btn btn-primary btn-lg">View Packages</a>
+          <a href="#contact" class="btn btn-outline btn-lg">Schedule a Free Consultation</a>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Custom-built</div>
+          <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Mobile-first</div>
+          <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> SEO-optimized</div>
+          <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Fast delivery</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="hero-card-dot blue"></div>
+            <div class="hero-card-dot"></div>
+            <div class="hero-card-dot"></div>
+            <div class="hero-card-title">Your Growth Dashboard</div>
+          </div>
+          <div>
+            <div class="hero-card-metric">
+              <div>
+                <div class="hero-card-value">+218<span class="hero-card-suffix">%</span></div>
+                <div class="hero-card-desc" style="margin-top:8px;">Average increase in leads after redesign</div>
+              </div>
+            </div>
+            <div style="margin-top:20px;">
+              <div class="hero-card-bar"><div class="hero-card-bar-fill"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Us -->
+<section class="section section-alt" id="why">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">Why Orion Lewis</div>
+      <h2>I do not just build websites. I build <span class="text-royal">business growth.</span></h2>
+      <p>Every website I create is designed with one goal: turning visitors into paying customers. Here is what sets my work apart.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Built to Convert</h3>
+        <p>Contractors, realtors, restaurants, and service businesses need sites that turn clicks into calls. Every section, button, and headline is strategically placed to guide visitors toward booking, calling, or buying.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+        <h3>Found on Google</h3>
+        <p>A beautiful website is useless if nobody finds it. Every site comes with SEO foundations built in so you rank higher and get found by customers searching for your services.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h3>Flawless on Mobile</h3>
+        <p>Over 60% of your customers will visit from their phone. I design mobile-first, so your site looks stunning and works perfectly on every screen size.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Packages -->
+<section class="section" id="packages">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">Pricing</div>
+      <h2>Simple, Transparent <span class="text-gold">Packages</span></h2>
+      <p>No hidden fees. No surprises. Pick the package that fits your business. Every package is a starting point — I will customize to your needs.</p>
+    </div>
+    <div class="packages-grid">
+      <div class="package-card">
+        <div class="package-name">Starter Website</div>
+        <div class="package-price"><span class="package-amount">$499</span></div>
+        <div class="package-period">Starting at</div>
+        <div class="package-desc">Perfect for startups and small businesses that need a professional online presence.</div>
+        <ul class="package-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 1-3 custom pages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Mobile responsive design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Contact form</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Basic SEO setup</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Social media integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Google Maps integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 2 rounds of revisions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 7-day delivery</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline package-btn">Get Started</a>
+      </div>
+
+      <div class="package-card popular">
+        <div class="package-badge">Most Popular</div>
+        <div class="package-name">Business Website</div>
+        <div class="package-price"><span class="package-amount">$999</span></div>
+        <div class="package-period">Starting at</div>
+        <div class="package-desc">Designed for businesses ready to generate leads and build trust online.</div>
+        <ul class="package-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Up to 7 custom pages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Premium custom design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Mobile & tablet optimization</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Speed optimization</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Basic on-page SEO</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Contact forms</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Image gallery</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Google Analytics</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Google Maps & social media</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 30 days of support</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary package-btn">Get Started</a>
+      </div>
+
+      <div class="package-card">
+        <div class="package-name">Premium Website</div>
+        <div class="package-price"><span class="package-amount">$1,999</span></div>
+        <div class="package-period">Starting at</div>
+        <div class="package-desc">A complete online presence built to help your business grow.</div>
+        <ul class="package-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Up to 15 custom pages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Fully custom design</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Advanced animations</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Blog setup</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Advanced SEO foundation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Lead capture forms</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Booking integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Email marketing integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> CRM integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Speed optimization</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> 60 days of support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Training on how to edit</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline package-btn">Get Started</a>
+      </div>
+
+      <div class="package-card">
+        <div class="package-name">E-Commerce Store</div>
+        <div class="package-price"><span class="package-amount">$2,499</span></div>
+        <div class="package-period">Starting at</div>
+        <div class="package-desc">Launch a professional online store that's ready to sell.</div>
+        <ul class="package-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Up to 50 products</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Secure checkout</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Payment integration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Shipping setup</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Inventory management</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Mobile optimized</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Product categories</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Coupon codes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Analytics</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Basic SEO</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline package-btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Maintenance Plans -->
+<section class="section section-alt" id="maintenance">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">Ongoing Care</div>
+      <h2>Website <span class="text-gold">Maintenance Plans</span></h2>
+      <p>Your website needs regular care to stay fast, secure, and up-to-date. Choose a plan that keeps your site running like new.</p>
+    </div>
+    <div class="maint-grid">
+      <div class="maint-card">
+        <div class="maint-name">Essential Care</div>
+        <div class="maint-price"><span class="maint-amount">$49</span><span class="maint-period">/month</span></div>
+        <ul class="maint-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Plugin updates</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Security monitoring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Weekly backups</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Minor content updates</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline package-btn">Subscribe</a>
+      </div>
+      <div class="maint-card">
+        <div class="maint-name">Business Care</div>
+        <div class="maint-price"><span class="maint-amount">$99</span><span class="maint-period">/month</span></div>
+        <ul class="maint-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Everything in Essential</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Priority support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Monthly performance reports</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> SEO monitoring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Up to 1 hour of edits</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline package-btn">Subscribe</a>
+      </div>
+      <div class="maint-card">
+        <div class="maint-name">Growth Care</div>
+        <div class="maint-price"><span class="maint-amount">$199</span><span class="maint-period">/month</span></div>
+        <ul class="maint-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Everything in Business</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Unlimited minor edits</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Landing page updates</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Speed optimization</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Monthly strategy call</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Priority response</li>
+        </ul>
+        <a href="#contact" class="btn btn-gold package-btn">Subscribe</a>
+      </div>
+    </div>
+  </div>
+</section><!-- Add-ons Table -->
+<section class="section" id="addons">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">A la Carte</div>
+      <h2>Additional <span class="text-royal">Services</span></h2>
+      <p>Need something extra? Add any of these services to your package or request them standalone.</p>
+    </div>
+    <table class="addons-table">
+      <thead><tr><th>Service</th><th>Price</th></tr></thead>
+      <tbody>
+        <tr><td>Logo Design</td><td>$150-$400</td></tr>
+        <tr><td>Additional Page</td><td>$100</td></tr>
+        <tr><td>Booking System</td><td>$200</td></tr>
+        <tr><td>Blog Setup</td><td>$150</td></tr>
+        <tr><td>Google Business Profile Setup</td><td>$150</td></tr>
+        <tr><td>Copywriting</td><td>$250+</td></tr>
+        <tr><td>SEO Setup</td><td>$300</td></tr>
+        <tr><td>AI Chatbot</td><td>$500+</td></tr>
+        <tr><td>Domain Setup</td><td>$75</td></tr>
+        <tr><td>Business Email Setup</td><td>$100</td></tr>
+        <tr><td>Website Migration</td><td>$200</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section section-alt" id="process">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">How It Works</div>
+      <h2>My Simple <span class="text-gold">4-Step Process</span></h2>
+      <p>From first call to launch day, I keep it simple and transparent.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-number">1</div>
+        <h3>Free Consultation</h3>
+        <p>We discuss your business, goals, and vision. You get a clear quote with no pressure.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">2</div>
+        <h3>Design and Build</h3>
+        <p>I design your custom site, share progress, and refine based on your feedback.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">3</div>
+        <h3>Review and Launch</h3>
+        <p>You approve the final design. I launch your site and make sure everything works.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">4</div>
+        <h3>Grow and Support</h3>
+        <p>I provide ongoing support, updates, and strategy to keep your site performing.</p>
+      </div>
+    </div>
+  </div>
+</section><!-- Stats Bar -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">Websites Launched</div></div>
+      <div class="stat-item"><div class="stat-value">218%</div><div class="stat-label">Avg Lead Increase</div></div>
+      <div class="stat-item"><div class="stat-value">1.2s</div><div class="stat-label">Avg Load Time</div></div>
+      <div class="stat-item"><div class="stat-value">100%</div><div class="stat-label">Custom Built</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-section">
+      <div class="section-badge" style="margin:0 auto 16px;">Ready to grow?</div>
+      <h2>Schedule a free consultation today.<br/>Let me build a website that <span class="text-gold">works as hard as you do.</span></h2>
+      <p>No pressure. No obligation. Just a real conversation about your business and how I can help.</p>
+      <a href="#contact" class="btn btn-gold btn-lg">Book Your Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">Get In Touch</div>
+      <h2>Let me Build Your <span class="text-royal">Website</span></h2>
+      <p>Tell me about your project. I will get back to you within 24 hours with a free quote.</p>
+    </div>
+    <form class="contact-form" id="leadForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(817) 555-0123" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@business.com" required>
+        </div>
+        <div class="form-group">
+          <label for="package">Interested In</label>
+          <select id="package" name="package">
+            <option value="">Select a package...</option>
+            <option value="starter">Starter Website ($499+)</option>
+            <option value="business">Business Website ($999+)</option>
+            <option value="premium">Premium Website ($1,999+)</option>
+            <option value="ecommerce">E-Commerce Store ($2,499+)</option>
+            <option value="maintenance">Maintenance Plan</option>
+            <option value="addon">Add-on Service</option>
+            <option value="custom">Custom Project</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="business">Business Name</label>
+        <input type="text" id="business" name="business" placeholder="Your Business LLC">
+      </div>
+      <div class="form-group">
+        <label for="message">Project Details</label>
+        <textarea id="message" name="message" placeholder="Tell me what you need... What does your business do? Do you have an existing website? What is your timeline?"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full btn-lg">Send My Free Quote Request</button>
+      <p>I respond within 24 hours. No spam, no pressure.</p>
+      <div class="form-success" id="successMsg">
+        <h3>Thank you! Your request has been received.</h3>
+        <p>I will contact you within 24 hours with your free quote.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg></div>
+          <span class="logo-text">ORION LEWIS</span>
+        </a>
+        <p>Modern, high-performing websites for contractors, realtors, restaurants, and local service businesses. Design. Build. Elevate.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#packages">Web Design Packages</a></li>
+          <li><a href="#maintenance">Maintenance Plans</a></li>
+          <li><a href="#addons">Add-on Services</a></li>
+          <li><a href="#process">My Process</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">Why Me</a></li>
+          <li><a href="#contact">Get a Quote</a></li>
+          <li><a href="#contact">Free Consultation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-contact">
+          <a href="tel:8175239753">(817) 523-9753</a>
+          <a href="mailto:oandctvmounting@gmail.com">oandctvmounting@gmail.com</a>
+          <span>Dallas-Fort Worth, TX</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Orion Lewis. All rights reserved.</span>
+      <span>Built in Dallas-Fort Worth, TX</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const APP_SCRIPT_URL = "";
+
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var data = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    package: document.getElementById("package").value,
+    business: document.getElementById("business").value,
+    message: document.getElementById("message").value,
+    source: "orion-lewis-landing"
+  };
+  var btn = e.target.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+
+  if (!APP_SCRIPT_URL) {
+    queueLocal(data);
+    showSuccess();
+    return;
+  }
+  fetch(APP_SCRIPT_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  }).then(function(r) { return r.json(); })
+    .then(function(res) { if (res.ok) { showSuccess(); } else { throw new Error(res.error); } })
+    .catch(function(err) { queueLocal(data); showSuccess(); });
+});
+
+function showSuccess() {
+  document.getElementById("successMsg").classList.add("show");
+  document.getElementById("leadForm").querySelectorAll("input,select,textarea,button").forEach(function(el) {
+    el.style.display = "none";
+  });
+  document.getElementById("successMsg").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function queueLocal(p) {
+  try {
+    var q = JSON.parse(localStorage.getItem("orion_pending_leads") || "[]");
+    q.push(Object.assign({queuedAt: new Date().toISOString()}, p));
+    localStorage.setItem("orion_pending_leads", JSON.stringify(q));
+  } catch(e) {}
+}
+</script>
+</body>
+</html>
