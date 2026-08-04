@@ -939,7 +939,7 @@
 </footer>
 
 <script>
-const APP_SCRIPT_URL = "";
+const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxK_gMCBAWfWSNRImjPmDaPxuYhPF8L2rKRSl5WAvWbyFz4bLn_daHztvw-NTlHNg29/exec";
 
 document.getElementById("leadForm").addEventListener("submit", function(e) {
   e.preventDefault();
@@ -956,18 +956,12 @@ document.getElementById("leadForm").addEventListener("submit", function(e) {
   btn.disabled = true;
   btn.textContent = "Sending...";
 
-  if (!APP_SCRIPT_URL) {
-    queueLocal(data);
-    showSuccess();
-    return;
-  }
   fetch(APP_SCRIPT_URL, {
     method: "POST",
-    mode: "cors",
+    mode: "no-cors",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
-  }).then(function(r) { return r.json(); })
-    .then(function(res) { if (res.ok) { showSuccess(); } else { throw new Error(res.error); } })
+  }).then(function() { showSuccess(); })
     .catch(function(err) { queueLocal(data); showSuccess(); });
 });
 
