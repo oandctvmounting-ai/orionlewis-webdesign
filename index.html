@@ -285,6 +285,108 @@
       .section { padding: 60px 0; }
       .addons-table th, .addons-table td { padding: 12px 16px; font-size: 0.85rem; }
     }
+
+    /* ===== LUXURY & CINEMATIC ANIMATIONS ===== */
+    /* Fade-up on scroll */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Staggered children */
+    .reveal-stagger > * { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-stagger.visible > * { opacity: 1; transform: translateY(0); }
+    .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.1s; }
+    .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.25s; }
+    .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.4s; }
+    .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.55s; }
+    .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.7s; }
+    .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.85s; }
+
+    /* Hero staggered text reveal */
+    .hero-content > * { opacity: 0; transform: translateY(30px); animation: heroFadeIn 1.2s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.55s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.7s; }
+    .hero-content > *:nth-child(5) { animation-delay: 0.85s; }
+    .hero-content > *:nth-child(6) { animation-delay: 1.0s; }
+    @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+
+    /* Hero card fade-in from right */
+    .hero-visual { opacity: 0; transform: translateX(40px); animation: cardSlideIn 1.4s cubic-bezier(0.16,1,0.3,1) 0.5s forwards; }
+    @keyframes cardSlideIn { to { opacity: 1; transform: translateX(0); } }
+
+    /* Gold shimmer sweep on buttons */
+    .btn-gold { position: relative; overflow: hidden; }
+    .btn-gold::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: left 0.6s ease; }
+    .btn-gold:hover::after { left: 100%; }
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent); transition: left 0.6s ease; }
+    .btn-primary:hover::after { left: 100%; }
+
+    /* Package card gold glow on hover */
+    .package-card:hover { box-shadow: 0 24px 64px rgba(0,35,102,0.15), 0 0 30px rgba(212,175,55,0.15); }
+    .package-card.popular { animation: popularPulse 3s ease-in-out infinite; }
+    @keyframes popularPulse { 0%,100% { box-shadow: 0 0 20px rgba(0,35,102,0.15); } 50% { box-shadow: 0 0 35px rgba(0,35,102,0.25); } }
+
+    /* Logo shimmer */
+    .logo-mark { position: relative; overflow: hidden; }
+    .logo-mark::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent); animation: logoShimmer 4s ease-in-out infinite; }
+    @keyframes logoShimmer { 0%,100% { left: -100%; } 50% { left: 100%; } }
+
+    /* Header nav fade-in on load */
+    .header { animation: navSlideDown 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+    @keyframes navSlideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
+    /* Section badge pulse already exists, add gold glow */
+    .section-badge { box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+
+    /* Counter animation */
+    .stat-value { opacity: 0; transition: opacity 0.3s; }
+    .stat-value.animated { opacity: 1; }
+
+    /* Gold particle dots in hero */
+    .particle { position: absolute; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; opacity: 0; pointer-events: none; }
+    @keyframes floatParticle { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 20% { opacity: 0.6; } 80% { opacity: 0.3; } 100% { opacity: 0; transform: translateY(-120px) scale(1); } }
+
+    /* Smooth scroll hint */
+    .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 24px; height: 40px; border: 2px solid var(--gray-300); border-radius: 12px; opacity: 0; animation: scrollHintFade 1s ease 2s forwards, scrollHintBounce 2s ease 2s infinite; }
+    .scroll-hint::before { content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 4px; height: 8px; background: var(--gold); border-radius: 2px; animation: scrollDot 2s ease 2s infinite; }
+    @keyframes scrollHintFade { to { opacity: 0.6; } }
+    @keyframes scrollHintBounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+    @keyframes scrollDot { 0% { top: 6px; opacity: 1; } 80% { top: 20px; opacity: 0; } 100% { opacity: 0; } }
+
+    /* Value card icon subtle rotate on hover */
+    .value-card:hover .value-icon { transform: rotate(-5deg) scale(1.1); }
+    .value-icon { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+
+    /* Process number pulse */
+    .process-number { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .process-step:hover .process-number { transform: scale(1.15); box-shadow: 0 0 25px rgba(212,175,55,0.4); }
+
+    /* Add-on table row slide-in */
+    .addons-table tbody tr { opacity: 0; transform: translateX(-20px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .addons-table.visible tbody tr { opacity: 1; transform: translateX(0); }
+    .addons-table.visible tbody tr:nth-child(1) { transition-delay: 0.05s; }
+    .addons-table.visible tbody tr:nth-child(2) { transition-delay: 0.1s; }
+    .addons-table.visible tbody tr:nth-child(3) { transition-delay: 0.15s; }
+    .addons-table.visible tbody tr:nth-child(4) { transition-delay: 0.2s; }
+    .addons-table.visible tbody tr:nth-child(5) { transition-delay: 0.25s; }
+    .addons-table.visible tbody tr:nth-child(6) { transition-delay: 0.3s; }
+    .addons-table.visible tbody tr:nth-child(7) { transition-delay: 0.35s; }
+    .addons-table.visible tbody tr:nth-child(8) { transition-delay: 0.4s; }
+    .addons-table.visible tbody tr:nth-child(9) { transition-delay: 0.45s; }
+    .addons-table.visible tbody tr:nth-child(10) { transition-delay: 0.5s; }
+    .addons-table.visible tbody tr:nth-child(11) { transition-delay: 0.55s; }
+
+    /* Footer fade */
+    .footer { opacity: 0; transform: translateY(30px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+    .footer.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-content > *, .hero-visual, .header { animation: none !important; opacity: 1 !important; transform: none !important; }
+      .reveal, .reveal-stagger > *, .addons-table tbody tr, .footer { opacity: 1 !important; transform: none !important; }
+      .scroll-hint { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -357,16 +459,16 @@
     </div>
   </div>
 </section>
+<div class="scroll-hint"></div>
 
-<!-- Why Us -->
 <section class="section section-alt" id="why">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-badge">Why Orion Lewis</div>
       <h2>I do not just build websites. I build <span class="text-royal">business growth.</span></h2>
       <p>Every website I create is designed with one goal: turning visitors into paying customers. Here is what sets my work apart.</p>
     </div>
-    <div class="value-grid">
+    <div class="value-grid reveal-stagger">
       <div class="value-card">
         <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <h3>Built to Convert</h3>
@@ -388,12 +490,12 @@
 <!-- Packages -->
 <section class="section" id="packages">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-badge">Pricing</div>
       <h2>Simple, Transparent <span class="text-gold">Packages</span></h2>
       <p>No hidden fees. No surprises. Pick the package that fits your business. Every package is a starting point — I will customize to your needs.</p>
     </div>
-    <div class="packages-grid">
+    <div class="packages-grid reveal-stagger">
       <div class="package-card">
         <div class="package-name">Starter Website</div>
         <div class="package-price"><span class="package-amount">$499</span></div>
@@ -480,12 +582,12 @@
 <!-- Maintenance Plans -->
 <section class="section section-alt" id="maintenance">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-badge">Ongoing Care</div>
       <h2>Website <span class="text-gold">Maintenance Plans</span></h2>
       <p>Your website needs regular care to stay fast, secure, and up-to-date. Choose a plan that keeps your site running like new.</p>
     </div>
-    <div class="maint-grid">
+    <div class="maint-grid reveal-stagger">
       <div class="maint-card">
         <div class="maint-name">Essential Care</div>
         <div class="maint-price"><span class="maint-amount">$49</span><span class="maint-period">/month</span></div>
@@ -527,7 +629,7 @@
 </section><!-- Add-ons Table -->
 <section class="section" id="addons">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-badge">A la Carte</div>
       <h2>Additional <span class="text-royal">Services</span></h2>
       <p>Need something extra? Add any of these services to your package or request them standalone.</p>
@@ -554,12 +656,12 @@
 <!-- Process -->
 <section class="section section-alt" id="process">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-badge">How It Works</div>
       <h2>My Simple <span class="text-gold">4-Step Process</span></h2>
       <p>From first call to launch day, I keep it simple and transparent.</p>
     </div>
-    <div class="process-steps">
+    <div class="process-steps reveal-stagger">
       <div class="process-step">
         <div class="process-number">1</div>
         <h3>Free Consultation</h3>
@@ -597,7 +699,7 @@
 <!-- CTA -->
 <section class="section">
   <div class="container">
-    <div class="cta-section">
+    <div class="cta-section reveal">
       <div class="section-badge" style="margin:0 auto 16px;">Ready to grow?</div>
       <h2>Schedule a free consultation today.<br/>Let me build a website that <span class="text-gold">works as hard as you do.</span></h2>
       <p>No pressure. No obligation. Just a real conversation about your business and how I can help.</p>
@@ -609,7 +711,7 @@
 <!-- Contact Form -->
 <section class="section section-alt" id="contact">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-badge">Get In Touch</div>
       <h2>Let me Build Your <span class="text-royal">Website</span></h2>
       <p>Tell me about your project. I will get back to you within 24 hours with a free quote.</p>
@@ -754,6 +856,104 @@ function queueLocal(p) {
     localStorage.setItem("orion_pending_leads", JSON.stringify(q));
   } catch(e) {}
 }
+
+// ===== SCROLL REVEAL OBSERVER =====
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+document.querySelectorAll(".reveal, .reveal-stagger").forEach(function(el) {
+  observer.observe(el);
+});
+
+// observe the add-ons table and footer separately
+var tableEl = document.querySelector(".addons-table");
+if (tableEl) observer.observe(tableEl);
+
+var footerEl = document.querySelector(".footer");
+if (footerEl) {
+  var footerObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        footerObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  footerObs.observe(footerEl);
+}
+
+// ===== ANIMATED COUNTERS (stats bar) =====
+var statObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (!entry.isIntersecting) return;
+    statObserver.unobserve(entry.target);
+    var el = entry.target;
+    el.classList.add("animated");
+    var text = el.textContent.trim();
+    var numMatch = text.match(/[\d.]+/);
+    if (!numMatch) { el.style.opacity = 1; return; }
+    var target = parseFloat(numMatch[0]);
+    var suffix = text.replace(numMatch[0], "");
+    var prefix = text.startsWith("+") ? "+" : "";
+    var isDecimal = numMatch[0].indexOf(".") >= 0;
+    var duration = 1800;
+    var startTime = null;
+    function animateVal(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = target * eased;
+      el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
+      if (progress < 1) requestAnimationFrame(animateVal);
+      else el.textContent = prefix + (isDecimal ? target.toFixed(1) : target) + suffix;
+    }
+    requestAnimationFrame(animateVal);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll(".stat-value").forEach(function(el) {
+  el.style.opacity = 0;
+  statObserver.observe(el);
+});
+
+// ===== GOLD PARTICLES IN HERO =====
+var heroSection = document.querySelector(".hero");
+if (heroSection && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  var particleContainer = heroSection;
+  function createParticle() {
+    var p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.bottom = "0";
+    var duration = 4 + Math.random() * 4;
+    p.style.animation = "floatParticle " + duration + "s ease-out forwards";
+    var size = 2 + Math.random() * 4;
+    p.style.width = size + "px";
+    p.style.height = size + "px";
+    particleContainer.appendChild(p);
+    setTimeout(function() { if (p.parentNode) p.parentNode.removeChild(p); }, duration * 1000);
+  }
+  setInterval(createParticle, 600);
+}
+
+// ===== SMOOTH SCROLL FOR NAV LINKS =====
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener("click", function(e) {
+    var targetId = this.getAttribute("href");
+    if (targetId === "#") return;
+    var target = document.querySelector(targetId);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
 </script>
 </body>
 </html>
