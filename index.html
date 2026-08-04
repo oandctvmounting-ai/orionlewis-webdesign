@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="ORION LEWIS — Modern, high-performing websites for contractors, realtors, restaurants, and local service businesses. Design. Build. Elevate. Starting at $499.">
   <title>ORION LEWIS — Web Design & Digital Solutions</title>
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ORION LEWIS — Web Design & Digital Solutions">
+  <meta property="og:description" content="Modern, high-performing websites for contractors, realtors, restaurants, and local service businesses. Design. Build. Elevate. Starting at $499.">
+  <meta property="og:image" content="https://oandctvmounting-ai.github.io/orionlewis-webdesign/og-image.jpg">
+  <meta property="og:url" content="https://oandctvmounting-ai.github.io/orionlewis-webdesign/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ORION LEWIS — Web Design & Digital Solutions">
+  <meta name="twitter:description" content="Modern, high-performing websites for local service businesses. Starting at $499.">
+  <meta name="twitter:image" content="https://oandctvmounting-ai.github.io/orionlewis-webdesign/og-image.jpg">
+  <link rel="apple-touch-icon" href="og-image.jpg">
+  <link rel="icon" type="image/jpeg" href="og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -124,6 +137,7 @@
     .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--black); }
     .logo-mark { width: 40px; height: 40px; background: var(--royal-blue); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
     .logo-mark svg { width: 24px; height: 24px; stroke: var(--gold); }
+    .logo-img { width: 40px; height: 40px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid rgba(212,175,55,0.4); box-shadow: 0 2px 8px rgba(0,35,102,0.15); }
     .logo-text { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.25rem; color: var(--royal-blue); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { color: var(--gray-600); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
@@ -522,9 +536,7 @@
   <div class="container">
     <nav class="nav">
       <a href="#" class="logo">
-        <div class="logo-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg>
-        </div>
+        <img src="og-image.jpg" alt="Orion Lewis Web Design" class="logo-img">
         <span class="logo-text">ORION LEWIS</span>
         </a>
         <ul class="nav-links">
@@ -900,8 +912,8 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="logo">
-          <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg></div>
-          <span class="logo-text">ORION LEWIS</span>
+          <img src="og-image.jpg" alt="Orion Lewis Web Design" class="logo-img">
+          <span class="logo-text" style="color: var(--white);">ORION LEWIS</span>
         </a>
         <p>Modern, high-performing websites for contractors, realtors, restaurants, and local service businesses. Design. Build. Elevate.</p>
       </div>
