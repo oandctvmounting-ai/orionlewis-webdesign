@@ -1251,6 +1251,118 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     }
   });
 });
+
+/* ================================================================
+   MAGIC UI — Initialize all 6 new effects
+   ================================================================ */
+
+// 1. MARQUEE — populate services/tech infinite scroll
+(function() {
+    const track = document.getElementById('marquee-track');
+    if (!track) return;
+    const items = [
+        'Web Design', 'SEO Optimization', 'E-Commerce', 'Booking Systems',
+        'AI Chatbots', 'Logo Design', 'Google Business Profile', 'Copywriting',
+        'Speed Optimization', 'Mobile-First Design', 'Analytics Setup', 'Email Marketing',
+        'CRM Integration', 'Domain Setup', 'Business Email', 'Website Migration',
+        'Maintenance Plans', 'Content Updates', 'Security Monitoring', 'Performance Reports',
+        'Custom Web Apps', 'Landing Pages', 'Lead Capture', 'Social Integration'
+    ];
+    // Duplicate for seamless loop
+    const html = [...items, ...items].map(item =>
+        `<span class="marquee-item">${item}</span>`
+    ).join('');
+    track.innerHTML = html;
+})();
+
+// 2. METEORS — spawn gold shooting stars in hero
+(function() {
+    const layer = document.getElementById('hero-meteors');
+    if (!layer) return;
+    const COUNT = 12;
+    for (let i = 0; i < COUNT; i++) {
+        const m = document.createElement('div');
+        m.className = 'meteor';
+        const startX = Math.random() * 100;
+        const startY = Math.random() * 100;
+        m.style.left = startX + 'vw';
+        m.style.top = startY + 'vh';
+        const dur = 4 + Math.random() * 6;
+        const delay = Math.random() * 8;
+        m.style.setProperty('--duration', dur + 's');
+        m.style.setProperty('--delay', delay + 's');
+        layer.appendChild(m);
+    }
+})();
+
+// 3. METEORS — spawn in stats section
+(function() {
+    const layer = document.getElementById('stats-meteors');
+    if (!layer) return;
+    const COUNT = 8;
+    for (let i = 0; i < COUNT; i++) {
+        const m = document.createElement('div');
+        m.className = 'meteor';
+        const startX = Math.random() * 100;
+        const startY = Math.random() * 100;
+        m.style.left = startX + 'vw';
+        m.style.top = startY + 'vh';
+        const dur = 4 + Math.random() * 6;
+        const delay = Math.random() * 8;
+        m.style.setProperty('--duration', dur + 's');
+        m.style.setProperty('--delay', delay + 's');
+        layer.appendChild(m);
+    }
+})();
+
+// 4. MAGIC CARD — spotlight follows cursor on value cards
+(function() {
+    const cards = document.querySelectorAll('.value-card.magic-card, .package-card, .maint-card');
+    cards.forEach(card => {
+        const inner = document.createElement('div');
+        inner.className = 'magic-inner';
+        // Wrap existing content
+        while (card.firstChild) inner.appendChild(card.firstChild);
+        card.appendChild(inner);
+        // Track mouse
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mx', x + '%');
+            card.style.setProperty('--my', y + '%');
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--mx', '50%');
+            card.style.setProperty('--my', '50%');
+        });
+    });
+})();
+
+// 5. SHINE BORDER — activate on package/maintenance cards
+(function() {
+    const shineCards = document.querySelectorAll('.package-card, .maint-card');
+    shineCards.forEach(card => {
+        card.classList.add('shine-border');
+        card.addEventListener('touchstart', () => card.classList.add('beam-live'), { passive: true });
+        card.addEventListener('touchend', () => setTimeout(() => card.classList.remove('beam-live'), 2000), { passive: true });
+    });
+})();
+
+// 6. ENHANCED STAGGER REVEAL — observe reveal-stagger-magic
+(function() {
+    const containers = document.querySelectorAll('.reveal-stagger-magic');
+    if (!containers.length) return;
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    containers.forEach(c => obs.observe(c));
+})();
 </script>
 </body>
 </html>
